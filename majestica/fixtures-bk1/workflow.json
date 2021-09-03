@@ -1,0 +1,53 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow", 
+  "document_type": "Leave Application", 
+  "is_active": 1, 
+  "modified": "2018-01-28 00:19:28.916799", 
+  "name": "Leave Approval", 
+  "override_status": 0, 
+  "states": [
+   {
+    "allow_edit": "Employee", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Open", 
+    "update_field": null, 
+    "update_value": null
+   }, 
+   {
+    "allow_edit": "Leave Approver", 
+    "doc_status": "1", 
+    "message": null, 
+    "state": "Approved", 
+    "update_field": null, 
+    "update_value": null
+   }, 
+   {
+    "allow_edit": "Leave Approver", 
+    "doc_status": "1", 
+    "message": null, 
+    "state": "Rejected", 
+    "update_field": null, 
+    "update_value": null
+   }
+  ], 
+  "transitions": [
+   {
+    "action": "Approve", 
+    "allowed": "Leave Approver", 
+    "next_state": "Approved", 
+    "state": "Open"
+   }, 
+   {
+    "action": "Reject", 
+    "allowed": "Leave Approver", 
+    "next_state": "Rejected", 
+    "state": "Open"
+   }
+  ], 
+  "workflow_name": "Leave Approval", 
+  "workflow_state_field": "workflow_state"
+ }
+]

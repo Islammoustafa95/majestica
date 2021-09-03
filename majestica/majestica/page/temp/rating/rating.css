@@ -1,0 +1,41 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+   #page-rating .m-widget--quick_buttons .m-panel__body{
+    background: none;
+ }
+
+ #page-rating .m-panel__body table{
+    background: none;
+    border: 0 none !important;
+ }
+ #page-rating .m-panel__body table th, #page-rating .m-panel__body table td{
+    border: 0 none !important;
+    text-align: center;
+ }
+ #page-rating [type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+ }
+ #page-rating .m-widget--quick_buttons h2{
+    margin-top: 90px;
+ }
+ #page-rating .m-widget--quick_buttons img{
+    height: 150px;
+    width: 150px;
+ }
+
+
+
+
+
+
+
+

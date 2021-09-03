@@ -1,0 +1,71 @@
+// Copyright (c) 2018, sahil and contributors
+// For license information, please see license.txt
+
+
+frappe.provide("majestica.stock_arrival");
+majestica.stock_arrival.StockArrival = Class.extend({
+	init: function(args){
+		$.extend(this, args);
+	},
+
+	barcode: function(args, cdt, cdn){
+		var me = this;
+		var par = me.frm.doc;
+		var child = locals[cdt][cdn];
+		if(child.barcode){
+			frappe.call({
+				"method": "majestica.majestica.doctype.stock_arrival.stock_arrival.get_data",
+				"args": {"barcode": child.barcode},
+				"callback": function(r){
+					if(r){
+						var data = r.message[0];
+						console.log(data);
+						$.extend(child, {
+							"item_code": data.name ? data.name : data.parent,
+							"uom_conversion_factor": data.uom_conversion_factor
+						});
+						me.frm.refresh_field("items");
+					}
+				}
+			});
+		}
+	},
+
+	received_qty: function(agrs, cdt, cdn){
+		var me = this;
+		var child = locals[cdt][cdn];
+		if(child.received_qty){
+			var total = 0;
+			total = child.received_qty * child.uom_conversion_factor;
+			$.extend(child, {
+				"qty": total
+			});
+			me.frm.refresh_field("items");
+		}
+	},
+
+	before_submit: function(){
+		var me = this;
+		console.log(me.frm.doc.name);
+		frappe.call({
+			"method": "majestica.majestica.doctype.stock_arrival.stock_arrival.get_final_data",
+			"args": {"name": me.frm.doc.name},
+			"callback": function(r){
+				if(r){
+					console.log(r);
+					me.frm.clear_table("arrival_items");
+					var data = r.message;
+					for(i=0;i<data.length;i++){
+						var child = frappe.model.get_new_doc("Final Arrival Items", me.frm.doc, "arrival_items");
+						$.extend(child, {
+							"item_code": data[i].item_code,
+							"qty": data[i].qty
+						});
+					}
+				}
+			}
+		});
+	}
+
+});
+cur_frm.script_manager.make(majestica.stock_arrival.StockArrival);

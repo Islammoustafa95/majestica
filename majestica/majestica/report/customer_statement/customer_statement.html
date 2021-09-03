@@ -1,0 +1,146 @@
+<!--div style="margin-bottom: 7px;" class="text-center">
+	{%= frappe.boot.letter_heads[filters.letter_head || frappe.get_doc(":Company", filters.company).default_letter_head || frappe.defaults.get_default("letter_head")] %}
+</div-->
+<h2 class="text-center">{%= __("Statement of Account") %}</h2>
+<h4 class="text-center">{%= (filters.party || filters.account) && ((filters.party || filters.account) + ", ")  || "" %} {%= filters.company %}</h4>
+<h5 class="text-center">
+	{%= dateutil.str_to_user(filters.from_date) %}
+	{%= __("to") %}
+	{%= dateutil.str_to_user(filters.to_date) %}
+</h5>
+<hr>
+
+<!-- LOOKUP CUSTOMER INFO -->
+<table width="100%">
+	<tr>
+		<td width="75%">
+<table border="0" width="100%">
+<tr>
+
+	</tr>
+
+	<tr>
+		<td width="25%"><b>Customer Name</b></td>
+		<td width="75%">{%=filters.party %}</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2"><b>Address</b></td>
+		<td rowspan="2">{%="" %}</td>
+	</tr>
+	</table>
+		</td>
+		<td width="25%">
+<table border="0" width="100%">
+<tr>
+
+	</tr>
+
+	<tr>
+		<td width="50%"><b>Date</b></td>
+		<td width="50%">{%=frappe.datetime.get_today() %}</td>
+	</tr>
+
+</table>
+		</td>
+</tr>
+</table>
+
+
+<hr>
+<table class="table table-bordered">
+        <thead>
+                <tr>
+                        <th style="width: 12%">{%= __("Date") %}</th>
+                        <th style="width: 15%">{%= __("Ref") %}</th>
+                        <th style="width: 25%">{%= __("Party") %}</th>
+                        <th style="width: 15%">{%= __("Debit") %}</th>
+                        <th style="width: 15%">{%= __("Credit") %}</th>
+                        <th style="width: 18%">{%= __("Balance (Dr - Cr)") %}</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for(var i=0, l=data.length; i<l; i++) { %}
+                        <tr>
+                        {% if(data[i].posting_date) { %}
+                                <td>{%= frappe.datetime.str_to_user(data[i].posting_date) %}</td>
+                                <td>{%= data[i].voucher_type %}
+                                        <br>{%= data[i].voucher_no %}</td>
+                                <td>
+                                        {% if(!(filters.party || filters.account)) { %}
+                                                {%= data[i].party || data[i].account %}
+                                                <br>
+                                        {% } %}
+
+                                        {{ __("Against") }}: {%= data[i].against %}
+                                        <br>{%= __("Remarks") %}: {%= data[i].remarks %}
+                                        {% if(data[i].bill_no) { %}
+                                                <br>{%= __("Supplier Invoice No") %}: {%= data[i].bill_no %}
+                                        {% } %}
+                                        </td>
+                                        <td style="text-align: right">
+                                                {%= format_currency(data[i].debit, filters.presentation_currency) %}</td>
+                                        <td style="text-align: right">
+                                                {%= format_currency(data[i].credit, filters.presentation_currency) %}</td>
+                        {% } else { %}
+                                <td></td>
+                                <td></td>
+                                <td><b>{%= frappe.format(data[i].account, {fieldtype: "Link"}) || "&nbsp;" %}</b></td>
+                                <td style="text-align: right">
+                                        {%= data[i].account && format_currency(data[i].debit, filters.presentation_currency) %}
+                                </td>
+                                <td style="text-align: right">
+                                        {%= data[i].account && format_currency(data[i].credit, filters.presentation_currency) %}
+                                </td>
+                        {% } %}
+                                <td style="text-align: right">
+                                        {%= format_currency(data[i].balance, filters.presentation_currency) %}
+                                </td>
+                        </tr>
+                {% } %}
+        </tbody>
+</table>
+
+
+
+<table class="table table-bordered">
+{% for(var j=0, l=data.length-1; j<l; j++) { %}
+	<tr>
+		{% if(data[j]['0-30'] or data[j]['31-60'] or data[j]['61-90'] or data[j]['91-Above']) { %}
+			<th>Age (Days): {%=data[j+1]['Age (Days)'] %} </th>
+			</tr>
+				<tr>
+					<th>
+						0-30
+					</th>
+					<th>
+						31-60	
+					</th>
+					<th>
+						61-90
+					</th>
+					<th>
+						91-Above
+					</th>
+				</tr>
+				<tr>
+					<td>
+						{%= format_currency(data[j+1]['0-30'], filters.presentation_currency) %}
+					</td>
+					<td>
+						{%= format_currency(data[j+1]['31-60'], filters.presentation_currency) %}
+					</td>
+					<td>
+						{%= format_currency(data[j+1]['61-90'], filters.presentation_currency) %}
+					</td>
+					<td>
+						{%= format_currency(data[j+1]['91-Above'], filters.presentation_currency) %}
+					</td>
+				</tr>
+			</tr>
+		{% } %}
+	</tr>
+{% } %}
+</table>
+
+<p class="text-right text-muted">Printed On {%= dateutil.str_to_user(dateutil.get_datetime_as_string()) %}</p>

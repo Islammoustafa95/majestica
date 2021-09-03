@@ -1,0 +1,5 @@
+{
+	"majestica/css/majestica.min.css":[
+		"public/css/web_custom.css"
+	]
+}

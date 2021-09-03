@@ -1,0 +1,48 @@
+body[data-route=""] .navbar-default, body[data-route="desktop"] .navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.app-icon {
+    padding: 20px;
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    border-radius: 34px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+input[type="checkbox"]:before {
+    position: absolute;
+    font-family: 'FontAwesome';
+    content: '\f096';
+    visibility: visible;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 20px;
+    display: inline-block;
+    font-size: 20px;
+    color: #d1d8dd;
+    -webkit-transition: 150ms color;
+    -o-transition: 150ms color;
+    transition: 150ms color;
+    background-color: white;
+    padding: 1px;
+    margin: -1px;
+}
+
+input[type="checkbox"]:checked:before {
+    content: '\f14a';
+    font-size: 20px;
+    color: #3b99fc;
+}
+
+.num-col > div {
+  width: 70px ! important;
+  height: 70px ! important;
+  text-align: center ! important;
+  line-height: 70px ! important;
+}

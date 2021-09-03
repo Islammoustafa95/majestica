@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include majestica *.css
+recursive-include majestica *.csv
+recursive-include majestica *.html
+recursive-include majestica *.ico
+recursive-include majestica *.js
+recursive-include majestica *.json
+recursive-include majestica *.md
+recursive-include majestica *.png
+recursive-include majestica *.py
+recursive-include majestica *.svg
+recursive-include majestica *.txt
+recursive-exclude majestica *.pyc

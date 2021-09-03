@@ -1,0 +1,325 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2018-02-02 16:36:16.115533",
+  "name": "pos user",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "pos user",
+  "roles": [
+   {
+    "parent": "pos user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2020-06-11 09:39:03.010089",
+  "name": "sales user",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "sales user",
+  "roles": []
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2020-10-14 15:23:15.413832",
+  "name": "purchase manager",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "purchase manager",
+  "roles": [
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Master Manager"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "purchase manager",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Item Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2020-11-18 11:31:20.887442",
+  "name": "new cashier staff",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "new cashier staff",
+  "roles": [
+   {
+    "parent": "new cashier staff",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "new cashier staff",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "new cashier staff",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Customer"
+   },
+   {
+    "parent": "new cashier staff",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2020-12-22 12:03:26.126441",
+  "name": "stock and sales user",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "stock and sales user",
+  "roles": [
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Customer"
+   },
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Item Manager"
+   },
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "stock and sales user",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2021-02-02 17:47:20.368137",
+  "name": "Stock",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "Stock",
+  "roles": [
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Item Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Maintenance Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Master Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Master Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Stock",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Report Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2020-09-19 11:47:16.362474",
+  "name": "new staff cashier",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "role_profile": "new assistant manager",
+  "roles": [
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Customer"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales User"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Supplier"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Master Manager"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Sales Manager"
+   },
+   {
+    "parent": "new staff cashier",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager"
+   }
+  ]
+ }
+]

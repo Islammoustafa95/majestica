@@ -1,0 +1,56 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "openbal", 
+  "modified": "2019-03-10 01:57:53.238883", 
+  "name": "openbal-Client", 
+  "script": "//frappe.ui.form.on(\"openbal\", \"refresh\", function(frm) {\n    //if (frm.doc.da == get_today()) {\n// frm.doc.test=frm.doc.sales-frm.doc.open_bal ;   }\n//total_incentive = 0     ;\n     \nlet html_str = '<iframe scrolling=no width=560 height=315 src=http://159.203.169.193/zen.php frameborder=0 ></iframe>';\nmsgprint(html_str, 'Price List for ' );\n//});\n//window.onload = function(){\n    //document.body.innerHTML = `\n\n\n//}\n ", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Purchase Order", 
+  "modified": "2019-03-10 02:01:04.248346", 
+  "name": "Purchase Order-Client", 
+  "script": "/*\nfrappe.ui.form.on(\"Purchase Order Item\", {\nitem_code: function(frm, cdt, cdn) {\n\tlet d = locals[cdt][cdn];\n\nlet material_details = frm.doc.items\n  \n   for(let i in material_details) {\n\tlet total =   material_details[i].item_code\n\t}\n\t \n //console.log(total);\n \n  \n//console.log(d);\n//console.log(frm);\n \nfrappe.call({\n\t\tmethod: \"erpnext.accounts.doctype.account.account.update_cbm\",\n\t\t\t\t\targs: {\n\t\t\t\t\t\t \n\t\t\t\t\t\tname: total\n\t\t\t\t\t \n} \n});\n }\n});\n*/\n\n/*------------------cbm(sahil)-------------------*/\nfrappe.ui.form.on(\"Purchase Order\", \"before_save\", function(frm){\n\tvar table = frm.doc.items;\n\tfor(let i=0;i<table.length;i++){\n\t\tif(table[i].cbm_information == 0 || table[i].cbm_information == null){\n\t\t\tvar cbm = (table[i].conversion_factor * table[i].qty * 1);\n\t\t} else{\n\t\t\tvar cbm = (table[i].conversion_factor * table[i].qty * table[i].cbm_information);\n\t\t}\n\t\tfrappe.model.set_value(table[i].doctype, table[i].name, \"cbm_informations\", cbm);\n\t}\n});\n\n\nfrappe.ui.form.on(\"Purchase Order\", \"before_submit\", function(frm, cdt, cdn){\n\tvar table = frm.doc.items;\n\tvar cbm_total = 0;\n\tif(table){\n\t\tfor(let i=0;i<table.length;i++){\n\t\t\tif(table[i].cbm_informations >= 0){\n\t\t\t\tcbm_total += parseInt(table[i].cbm_informations);\n\t\t\t}\n\t\t}\n\t}\n\tfrappe.model.set_value(\"Purchase Order\", frm.doc.name, \"cbm_total\", cbm_total);\n});", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Purchase Invoice", 
+  "modified": "2018-12-24 00:06:25.134135", 
+  "name": "Purchase Invoice-Client", 
+  "script": "/*-----------CBM(Sahi)---------------*/\n\nfrappe.ui.form.on(\"Purchase Invoice Item\", \"qty\", function(frm, cdt, cdn){\n\tvar child = frappe.get_doc(cdt, cdn);\n\tvar qty = child.qty || 0.0;\n\tvar conversion_fact = child.conversion_factor || 1;\n\tfrappe.model.get_value(\"Item\", {\"name\": child.item_code}, \"cbm_information\", function(r){\n\t\tif(r){\n\t\t\tvar cbm = (r.cbm_information * qty * conversion_fact);\n\t\t\tfrappe.model.set_value(child.doctype, child.name, \"cbm_information\", cbm);\n\t\t}\n\t});\n});", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Stock Arrival", 
+  "modified": "2019-03-10 02:02:26.877702", 
+  "name": "Stock Arrival-Client", 
+  "script": "/*-----------------stock with barcode(sahil)----------------*/\n\nfrappe.ui.form.on(\"Arrival Items\", \"item_barcode\", function(frm, cdt, cdn){\n\t//console.log(\"sahil is here\");\n\tvar child = frappe.get_doc(cdt, cdn);\n\tif(child){\n\t\tfrappe.model.get_value(\"Item\", {\"barcode\": child.item_barcode}, \"item_code\", function(r){\n\t\t\tif(r){\n\t\t\t\tfrappe.model.set_value(child.doctype, child.name, \"item_code\", r.item_code);\n\t\t\t}\n\t\t});\n\t}\n});", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Stock Entry", 
+  "modified": "2019-03-10 02:01:35.712013", 
+  "name": "Stock Entry-Client", 
+  "script": "/*-------------search with barcode------------*/\nfrappe.ui.form.on(\"Stock Entry Detail\", \"barcode\", function(frm, cdt, cdn){\n\tvar child = locals[cdt][cdn];\n\tif(child.barcode){\n\t\tfrappe.call({\n\t\t\t\"method\": \"majestica.whitelisted.get_item\",\n\t\t\t\"args\": {\"barcode\": child.barcode},\n\t\t\t\"callback\": function(r){\n\t\t\t\tif(r){\n\t\t\t\t\tvar item = r.message;\n\t\t\t\t\t$.extend(child, {\n\t\t\t\t\t\t\"item_code\": item[0].parent\n\t\t\t\t\t});\n\t\t\t\t\tfrm.refresh();\n\t\t\t\t}\n\t\t\t}\n\t\t});\n\t}\t\n});", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Stock Reconciliation", 
+  "modified": "2019-03-10 02:02:06.206697", 
+  "name": "Stock Reconciliation-Client", 
+  "script": "frappe.ui.form.on(\"Stock Reconciliation Item\", \"barcode\", function(frm, cdt, cdn){\n\tvar child = locals[cdt][cdn];\n\tif(child.barcode){\n\t\tfrappe.call({\n\t\t\t\"method\": \"majestica.whitelisted.get_item\",\n\t\t\t\"args\": {\"barcode\": child.barcode},\n\t\t\t\"callback\": function(r){\n\t\t\t\tif(r){\n\t\t\t\t\tvar item = r.message;\n\t\t\t\t\t$.extend(child, {\n\t\t\t\t\t\t\"item_code\": item[0].parent\n\t\t\t\t\t});\n\t\t\t\t\tfrm.refresh()\n\t\t\t\t}\n\t\t\t}\n\t\t});\n\t}\t\n});", 
+  "script_type": "Client"
+ }
+]

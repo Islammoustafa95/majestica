@@ -1,0 +1,9 @@
+
+.product-image-square{
+    width: !important 100%;
+    height: !important 24px;
+    padding: !important 100px;
+    background-size: !important cover;
+    background-repeat: !important no-repeat;
+    background-position: !important center top;
+}
