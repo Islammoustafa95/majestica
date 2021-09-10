@@ -122,7 +122,7 @@ scheduler_events = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "majestica.event.get_events"
 # }
-fixtures = ['Report', 'Role Profile', 'Role', 'Custom Field', 'Custom Script', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action', 'Item']
+fixtures = ['Report', 'Role Profile', 'Role', 'Custom Field', 'Client Script', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action', 'Item']
 
 doctype_list_js = {
 	"Purchase Order":"public/js/puchase_order_list.js"
