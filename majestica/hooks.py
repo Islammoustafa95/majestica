@@ -100,9 +100,9 @@ scheduler_events = {
 	# "daily": [
 	# 	"majestica.tasks.daily"
 	# ],
-	"hourly": [
-		"erpnext.stock.doctype.item.item.sync_with_woocommerce"
-	],
+	#"hourly": [
+	#	"erpnext.stock.doctype.item.item.sync_with_woocommerce"
+	#],
 	# "weekly": [
 	# 	"majestica.tasks.weekly"
 	# ]
